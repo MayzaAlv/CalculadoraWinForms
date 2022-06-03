@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace Calculadora
 {
-    public partial class Form : System.Windows.Forms.Form
+    public partial class Calculadora : System.Windows.Forms.Form
     {
 
         decimal valor1 = 0, valor2 = 0;
         string operacao = "";
 
-        public Form()
+        public Calculadora()
         {
             InitializeComponent();
         }
@@ -69,7 +69,15 @@ namespace Calculadora
 
         private void btnPonto_Click(object sender, EventArgs e)
         {
-            txtResultado.Text += ".";
+            if (!txtResultado.Text.Contains("."))
+            {
+                txtResultado.Text += ".";
+            }
+        }
+
+        private void btnZero_Click(object sender, EventArgs e)
+        {
+            txtResultado.Text += "0";
         }
 
         private void btnSubtracao_Click(object sender, EventArgs e)
@@ -132,6 +140,7 @@ namespace Calculadora
                 valor1 = decimal.Parse(txtResultado.Text, CultureInfo.InvariantCulture);
                 txtResultado.Text = "";
                 operacao = "SOMA";
+                lblOperacao.Text = "+";
             }
         }
 
@@ -148,6 +157,7 @@ namespace Calculadora
             txtResultado.Text = "";
             lblOperacao.Text = "";
         }
+
 
         private void btnResultado_Click(object sender, EventArgs e)
         {
@@ -179,6 +189,85 @@ namespace Calculadora
                     default:
                         break;
                 }
+            }
+        }
+
+        private void Calculadora_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.D1:
+                case Keys.NumPad1:
+                    btnUm.PerformClick();
+                    break;
+
+                case Keys.D2:
+                case Keys.NumPad2:
+                    btnDois.PerformClick();
+                    break;
+
+                case Keys.D3:
+                case Keys.NumPad3:
+                    btnTres.PerformClick();
+                    break;
+
+                case Keys.D4:
+                case Keys.NumPad4:
+                    btnQuatro.PerformClick();
+                    break;
+
+                case Keys.D5:
+                case Keys.NumPad5:
+                    btnCinco.PerformClick();
+                    break;
+
+                case Keys.D6:
+                case Keys.NumPad6:
+                    btnSeis.PerformClick();
+                    break;
+
+                case Keys.D7:
+                case Keys.NumPad7:
+                    btnSete.PerformClick();
+                    break;
+
+                case Keys.D8:
+                case Keys.NumPad8:
+                    btnOito.PerformClick();
+                    break;
+
+                case Keys.D9:
+                case Keys.NumPad9:
+                    btnCinco.PerformClick();
+                    break;
+
+                case Keys.D0:
+                case Keys.NumPad0:
+                    btnZero.PerformClick();
+                    break;
+
+                case Keys.Subtract:
+                    btnSubtracao.PerformClick();
+                    break;
+
+                case Keys.Add:
+                    btnSoma.PerformClick();
+                    break;
+
+                case Keys.Divide:
+                    btnDividir.PerformClick();
+                    break;
+
+                case Keys.Multiply:
+                    btnMultiplicacao.PerformClick();
+                    break;
+
+                case Keys.Decimal:
+                    btnPonto.PerformClick();
+                    break;
+
+                default:
+                    break;
             }
         }
     }
